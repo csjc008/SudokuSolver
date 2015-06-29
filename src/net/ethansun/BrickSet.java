@@ -67,6 +67,50 @@ public class BrickSet {
         }
     }
 
+    public boolean initFromFile2(String fileName) {
+        File file = new File(fileName);
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String lineContent = null;
+            int _i = 0;
+            while ((lineContent = reader.readLine()) != null) {
+                lineContent = lineContent.replaceAll("\\t", " ");
+                lineContent = lineContent.replaceAll("  ", " ");
+                lineContent = lineContent.trim();
+                if ("".equals(lineContent)) {
+                    continue;
+                }
+                String[] eles = lineContent.split(" ");
+                if (eles.length != 9) {
+                    _i++;
+                    continue;
+                }
+                for (int _j = 0; _j < 9; _j++) {
+                    int mi = _i / 3;
+                    int mj = _j / 3;
+                    int i = _i - 3 * mi;
+                    int j = _j - 3 * mj;
+                    this.confirmOne(mi, mj, i, j, Byte.valueOf(eles[_j]));
+                }
+                _i++;
+            }
+            reader.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+
     private int reducePoss() {
         for (int mi = 0; mi < 3; mi++) {
             for (int mj = 0; mj < 3; mj++) {
