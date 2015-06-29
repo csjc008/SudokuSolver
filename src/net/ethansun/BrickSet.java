@@ -31,6 +31,12 @@ public class BrickSet {
         this.bricks[mi][mj].confirmOne(_i, _j, _val);
     }
 
+    /**
+     * read file format 1
+     * 
+     * @param fileName
+     * @return
+     */
     public boolean initFromFile(String fileName) {
         File file = new File(fileName);
         BufferedReader reader = null;
@@ -67,6 +73,12 @@ public class BrickSet {
         }
     }
 
+    /**
+     * read file format 2
+     * 
+     * @param fileName
+     * @return
+     */
     public boolean initFromFile2(String fileName) {
         File file = new File(fileName);
         BufferedReader reader = null;
@@ -111,6 +123,12 @@ public class BrickSet {
         }
     }
 
+    /**
+     * reduce the possibilities of all bricks <br/>
+     * reduce Mini Brick, reduce Column, and reduce Row
+     * 
+     * @return
+     */
     private int reducePoss() {
         for (int mi = 0; mi < 3; mi++) {
             for (int mj = 0; mj < 3; mj++) {
@@ -237,6 +255,11 @@ public class BrickSet {
         return null;
     }
 
+    /**
+     * sequential pick on undetermined brick
+     * 
+     * @return brick quad index
+     */
     private QuadIndex pickOneUndetermined() {
         for (int _mi = 0; _mi < 3; _mi++) {
             for (int _mj = 0; _mj < 3; _mj++) {
@@ -252,6 +275,11 @@ public class BrickSet {
         return null;
     }
 
+    /**
+     * copy values of the BrickSet and return a new allocated BrickSet
+     * 
+     * @return
+     */
     public BrickSet copy() {
         BrickSet cp = new BrickSet();
         for (int mi = 0; mi < 3; mi++) {
@@ -269,6 +297,11 @@ public class BrickSet {
         return cp;
     }
 
+    /**
+     * status of the current BrickSet
+     * 
+     * @return 1 means success,-1 means matrix is broken, 0 means undetermined
+     */
     public int status() {
         boolean undetermined = false;
         for (int mi = 0; mi < 3; mi++) {

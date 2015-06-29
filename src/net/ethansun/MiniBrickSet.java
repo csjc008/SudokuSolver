@@ -38,6 +38,13 @@ public class MiniBrickSet {
         this.val[i][j] = val;
     }
 
+    /**
+     * confirm on brick's value
+     * 
+     * @param i
+     * @param j
+     * @param _val
+     */
     public void confirmOne(int i, int j, byte _val) {
         if (_val < 1 || _val > 9 || i < 0 || i >= 3 || j < 0 || j >= 3) {
             return;
@@ -45,6 +52,14 @@ public class MiniBrickSet {
         this.val[i][j] = _val;
     }
 
+    /**
+     * given the index, reduce the possibility of the value excluding the
+     * current position
+     * 
+     * @param _i
+     * @param _j
+     * @param _val
+     */
     public void reduceBrick(int _i, int _j, byte _val) {
         if (_val < 1 || _val > 9 || _i < 0 || _i >= 3 || _j < 0 || _j >= 3) {
             return;
@@ -59,6 +74,12 @@ public class MiniBrickSet {
         }
     }
 
+    /**
+     * given the row number, reduce the possibility of the value
+     * 
+     * @param _i
+     * @param _val
+     */
     public void reduceRow(int _i, byte _val) {
         if (_val < 1 || _val > 9 || _i < 0 || _i >= 3) {
             return;
@@ -68,6 +89,12 @@ public class MiniBrickSet {
         }
     }
 
+    /**
+     * given the column number, reduce the possibility of the value
+     * 
+     * @param _j
+     * @param _val
+     */
     public void reduceColumn(int _j, byte _val) {
         if (_val < 1 || _val > 9 || _j < 0 || _j >= 3) {
             return;
@@ -77,6 +104,12 @@ public class MiniBrickSet {
         }
     }
 
+    /**
+     * validate the mini brick, check determined, broken case
+     * 
+     * @return 1 for added determined case number senario, -1 for bad case
+     *         occurrence
+     */
     public int validateBrick() {
         int changed = 0;
         for (int i = 0; i < 3; i++) {
