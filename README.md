@@ -34,6 +34,11 @@ The program reads input from a definition file.
 
 The file defines as follows:
 
-Each line defines a initial number on the matrix
-
+format 1:  
+Each line defines a initial number on the matrix  
 main-index-x[0-2] main-index-y[0-2] sub-index-x[0-2] sub-index-y[0-2] number[1-9]
+
+format 2:  
+Just like the initial matrix, 9 numbers each line separated with space, 9 lines.
+
+There two solvers, iteration and stack. The iteration is somehow faster, in fmt2ProblemVeryHard2, iteration solver consumes about 30ms, and stack solver consumes about more than 600 ms.
