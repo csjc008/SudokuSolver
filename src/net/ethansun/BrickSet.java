@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Stack;
 
 public class BrickSet {
 
@@ -120,6 +121,11 @@ public class BrickSet {
         }
     }
 
+    /**
+     * use iteration
+     * 
+     * @return
+     */
     public BrickSet solve() {
         this.reduceTillNoChange();
         int status = this.status();
@@ -146,6 +152,43 @@ public class BrickSet {
             }
         } else {
             System.out.println("wrong!!");
+        }
+        return null;
+    }
+
+    /**
+     * use stack
+     * 
+     * @return
+     */
+    public BrickSet solve2() {
+        Stack<BrickSet> bsStack = new Stack<BrickSet>();
+        bsStack.push(this);
+        while (!bsStack.isEmpty()) {
+            BrickSet bs = bsStack.pop();
+            bs.reduceTillNoChange();
+            int bsStatus = bs.status();
+            if (bsStatus == 1) {
+                // done
+                return bs;
+            } else if (bsStatus == 0) {
+                // undetermined
+                QuadIndex qi = bs.pickOneUndetermined();
+                if (qi != null) {
+                    for (int val = 0; val < 9; val++) {
+                        if (bs.bricks[qi.mi][qi.mj].getBrick(qi.i, qi.j, val) == 1) {
+                            BrickSet subBs = bs.copy();
+                            subBs.bricks[qi.mi][qi.mj].setVal(qi.i, qi.j, (byte) (val + 1));
+                            bsStack.push(subBs);
+                        }
+                    }
+                } else {
+                    System.out.println("wrong!!");
+                }
+            } else if (bsStatus == -1) {
+                // System.out.println("wrong path:");
+                // bs.printAllVals2Screen();
+            }
         }
         return null;
     }
