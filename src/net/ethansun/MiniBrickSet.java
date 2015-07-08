@@ -38,6 +38,14 @@ public class MiniBrickSet {
         this.val[i][j] = val;
     }
 
+    public byte[] getValArray(int i) {
+        return this.val[i];
+    }
+
+    public byte[] getBrickPoss(int i, int j) {
+        return this.bricks[i][j];
+    }
+
     /**
      * confirm on brick's value
      * 

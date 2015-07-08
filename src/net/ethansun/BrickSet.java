@@ -286,11 +286,16 @@ public class BrickSet {
             for (int mj = 0; mj < 3; mj++) {
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        for (int val = 0; val < 9; val++) {
-                            cp.bricks[mi][mj].setBrick(i, j, val, this.bricks[mi][mj].getBrick(i, j, val));
-                        }
-                        cp.bricks[mi][mj].setVal(i, j, this.bricks[mi][mj].getVal(i, j));
+                        // for (int val = 0; val < 9; val++) {
+                        // cp.bricks[mi][mj].setBrick(i, j, val,
+                        // this.bricks[mi][mj].getBrick(i, j, val));
+                        // }
+                        System.arraycopy(this.bricks[mi][mj].getBrickPoss(i, j), 0,
+                                cp.bricks[mi][mj].getBrickPoss(i, j), 0, 9);
+                        // cp.bricks[mi][mj].setVal(i, j,
+                        // this.bricks[mi][mj].getVal(i, j));
                     }
+                    System.arraycopy(this.bricks[mi][mj].getValArray(i), 0, cp.bricks[mi][mj].getValArray(i), 0, 3);
                 }
             }
         }
